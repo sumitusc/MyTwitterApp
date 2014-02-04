@@ -21,6 +21,10 @@ public class User extends BaseModel  implements Serializable{
         return getString("screen_name");
     }
 
+    public String getTagline(){
+    	return getString("description");
+    }
+    
     public String getProfileImageUrl() {
         return getString("profile_image_url");
     }

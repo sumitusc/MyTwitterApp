@@ -36,12 +36,58 @@ public class TwitterClient extends OAuthBaseClient {
     
     public void getHomeTimeline(AsyncHttpResponseHandler handler, int count){
     	
+    	//Log.d("DEBUG","getHomeTimeline");
     	String url = getApiUrl("statuses/home_timeline.json");
     	RequestParams params = new RequestParams();
     	params.put("count", ""+count);
     	client.get(url,  params, handler);
     	//handler.onSuccess(arg0)
     }
+    
+    public void getUserTimeline(AsyncHttpResponseHandler handler, int count){
+    	
+    	//Log.d("DEBUG","getHomeTimeline");
+    	String url = getApiUrl("statuses/user_timeline.json");
+    	RequestParams params = new RequestParams();
+    	params.put("count", ""+count);
+    	client.get(url,  params, handler);
+    	//handler.onSuccess(arg0)
+    }
+
+    public void getUserTimeline(AsyncHttpResponseHandler handler, String screenName, long userId, int count){
+    	
+    	//Log.d("DEBUG","getHomeTimeline");
+    	String url = getApiUrl("statuses/user_timeline.json");
+    	RequestParams params = new RequestParams();
+    	params.put("screen_name", ""+screenName);
+    	params.put("user_id", ""+userId);
+    	params.put("count", ""+count);
+    	client.get(url,  params, handler);
+    	//handler.onSuccess(arg0)
+    }
+
+    public void getMentions(AsyncHttpResponseHandler handler, int count){
+    	
+    	//Log.d("DEBUG","getMentions");
+    	String url = getApiUrl("statuses/mentions_timeline.json");
+    	RequestParams params = new RequestParams();
+    	params.put("count", ""+count);
+    	client.get(url,  params, handler);
+    }
+    
+    public void getMyInfo(AsyncHttpResponseHandler handler){
+    	String url = getApiUrl("account/verify_credentials.json");
+    	client.get(url, null , handler);	
+    }
+    
+    public void getUserProfiles(AsyncHttpResponseHandler handler, String screen_name, long user_id){
+    	String url = getApiUrl("/users/lookup.json");
+    	RequestParams params = new RequestParams();
+    	params.put("screen_name", ""+screen_name);
+    	params.put("user_id", ""+user_id);
+    	client.get(url,  params, handler);
+    }
+    
     
     // CHANGE THIS
     // DEFINE METHODS for different API endpoints here
